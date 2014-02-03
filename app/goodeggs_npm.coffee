@@ -2,7 +2,7 @@ fs = require 'fs'
 path = require 'path'
 yeoman = require 'yeoman-generator'
 handlebarsEngine = require './handlebars_engine'
-{underscored} = require 'underscore.string'
+{underscored, dasherize} = require 'underscore.string'
 
 contributor = (user) ->
   if user.name and user.email
@@ -21,14 +21,16 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @sourceRoot path.join __dirname, '../templates'
     @pkg = require '../package.json'
 
+    @reposlug = path.basename process.cwd()
+
   askFor: ->
     cb = @async()
 
     prompts = [{
       type: 'input'
       name: 'pkgname'
-      message: 'Name your package'
-      default: @appname
+      message: 'Name your NPM package'
+      default: @reposlug
     }, {
       type: 'input'
       name: 'description'

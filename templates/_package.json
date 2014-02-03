@@ -13,10 +13,10 @@
   "main": "{{underscored pkgname}}",
   "repository": {
     "type": "git",
-    "url": "git://github.com/goodeggs/{{ appname }}.git"
+    "url": "git://github.com/goodeggs/{{ reposlug }}.git"
   },
-  "homepage": "https://github.com/goodeggs/{{ appname }}",
-  "bugs": "https://github.com/goodeggs/{{ appname }}/issues",
+  "homepage": "https://github.com/goodeggs/{{ reposlug }}",
+  "bugs": "https://github.com/goodeggs/{{ reposlug }}/issues",
   "dependencies": {
   },
   "devDependencies": {
