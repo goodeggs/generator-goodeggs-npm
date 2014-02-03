@@ -33,3 +33,8 @@ describe 'goodeggs-npm generator', ->
   it 'scaffolds a README', ->
     assert.fileContent 'README.md', /// #{pkgname} ///
     assert.fileContent 'README.md', /// #{description} ///
+
+  it 'adds badges', ->
+    assert.fileContent 'README.md', /// travis-ci ///
+    assert.fileContent 'README.md', /// badge.fury.io/js ///
+

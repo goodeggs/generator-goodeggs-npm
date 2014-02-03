@@ -13,7 +13,7 @@ $ npm install -g yo
 generator-goodeggs-npm isn't published to NPM, since it's just for us.  Point at the URL instead:
 
 ```
-$ npm install -g git+https://github.com/goodeggs/dump-and-restore
+$ npm install -g git+https://github.com/goodeggs/generator-goodeggs-npm
 ```
 
 Then you can start a new node module with:
