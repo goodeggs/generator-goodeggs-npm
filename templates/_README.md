@@ -1,0 +1,4 @@
+<%= pkgname %>
+==============
+
+<%= description %>
