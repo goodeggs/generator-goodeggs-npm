@@ -15,23 +15,27 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   askFor: ->
     cb = @async()
 
-    # have Yeoman greet the user.
-    # console.log @yeoman
-    prompts = [
-      type: 'confirm'
-      name: 'someOption'
-      message: 'Would you like to enable this option? This is just a test'
-      default: true
-    ]
-    @prompt prompts, (props) =>
-      @someOption = props.someOption
+    prompts = [{
+      type: 'input'
+      name: 'pkgname'
+      message: 'Name your package'
+      default: @appname
+    }, {
+      type: 'input'
+      name: 'description'
+      message: 'Describe your package'
+      default: ''
+
+    }]
+    @prompt prompts, ({@pkgname, @description}) =>
       cb()
 
   project: ->
     @copy '../.editorconfig', '.editorconfig'
     @copy 'gitignore', '.gitignore'
     @copy 'travis.yml', '.travis.yml'
-    @copy '_package.json', 'package.json'
+    @template '_package.json', 'package.json'
+    @template '_README.md', 'README.md'
 
   test: ->
     @copy '../test/mocha.opts', 'test/mocha.opts'

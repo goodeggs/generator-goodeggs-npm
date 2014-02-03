@@ -1,29 +1,35 @@
 path = require 'path'
 helpers = require('yeoman-generator').test
+assert = require('yeoman-generator').assert
 
 describe 'goodeggs-npm generator', ->
-  beforeEach (done) ->
+  pkgname = 'french-omelette'
+  description = "Dish made from beaten eggs quickly cooked with butter or oil in a frying pan"
+
+  before (done) ->
     helpers.testDirectory path.join(__dirname, '../temp'), (err) =>
       if err
         return done(err)
 
       @app = helpers.createGenerator('goodeggs-npm:app', ['../app/index.js'])
-      done()
+      @app.options['skip-install'] = true
+
+      helpers.mockPrompt @app, {pkgname, description}
+      @app.run {}, ->
+        done()
 
   it 'creates expected files', (done) ->
-    expected = [
-      # add files you expect to exist here.
+    assert.file [
       '.editorconfig'
       '.gitignore'
       '.travis.yml'
-      'package.json'
       'test/mocha.opts'
     ]
+    done()
 
-    helpers.mockPrompt @app,
-      'someOption': true
+  it 'names the node package', ->
+    assert.fileContent 'package.json', /// "name":\s"#{pkgname}" ///
 
-    @app.options['skip-install'] = true
-    @app.run {}, ->
-      helpers.assertFiles(expected)
-      done()
+  it 'scaffolds a README', ->
+    assert.fileContent 'README.md', /// #{pkgname} ///
+    assert.fileContent 'README.md', /// #{description} ///
