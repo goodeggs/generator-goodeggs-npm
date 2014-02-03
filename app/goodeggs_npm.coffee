@@ -1,8 +1,10 @@
 path = require 'path'
 yeoman = require 'yeoman-generator'
+handlebarsEngine = require './handlebars_engine'
 
 module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
+    options.engine = handlebarsEngine
     yeoman.generators.Base.apply this, arguments
     @on 'end', ->
       @installDependencies
@@ -29,6 +31,13 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     }]
     @prompt prompts, ({@pkgname, @description}) =>
       cb()
+
+  gitUser: ->
+    gitConfig = require 'git-config'
+    done = @async()
+    gitConfig (err, config) ->
+      @user = config?.user or {}
+      done()
 
   project: ->
     @copy '../.editorconfig', '.editorconfig'

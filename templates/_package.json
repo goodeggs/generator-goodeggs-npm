@@ -1,6 +1,16 @@
 {
-  "name": "<%= pkgname %>",
+  "name": "{{ pkgname }}",
   "version": "0.0.0",
-  "description": "<%= description %>",
-  "dependencies": {}
+  "description": "{{ description }}",
+  "author": "Good Eggs Engineering <eng@goodeggs.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/goodeggs/{{ appname }}.git"
+  },
+  "homepage": "https://github.com/goodeggs/{{ appname }}",
+  "bugs": "https://github.com/goodeggs/{{ appname }}/issues",
+  "dependencies": {},
+  "scripts": {
+    "test": "mocha"
+  }
 }
