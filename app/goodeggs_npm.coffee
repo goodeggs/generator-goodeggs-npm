@@ -1,3 +1,4 @@
+fs = require 'fs'
 path = require 'path'
 yeoman = require 'yeoman-generator'
 handlebarsEngine = require './handlebars_engine'
@@ -62,3 +63,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   test: ->
     @copy '../test/mocha.opts', 'test/mocha.opts'
     @copy 'test.coffee', "test/#{underscored @pkgname}.test.coffee"
+
+  maybeGit: ->
+    return if fs.existsSync '.git'
+    @template 'git/config', '.git/config'

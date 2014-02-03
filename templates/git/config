@@ -1,0 +1,6 @@
+[remote "origin"]
+	url = https://github.com/goodeggs/{{ appname }}.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
