@@ -3,6 +3,13 @@
   "version": "0.0.0",
   "description": "{{ description }}",
   "author": "Good Eggs Engineering <eng@goodeggs.com>",
+  {{~#if contributors}}
+  "contributors": [
+    {{#each contributors~}}
+    "{{{this}}}"{{#if @index}},{{/if}}
+    {{~/each}}
+  ],
+  {{/if~}}
   "repository": {
     "type": "git",
     "url": "git://github.com/goodeggs/{{ appname }}.git"

@@ -2,6 +2,11 @@ path = require 'path'
 yeoman = require 'yeoman-generator'
 handlebarsEngine = require './handlebars_engine'
 
+contributor = (user) ->
+  if user.name and user.email
+  then "#{user.name} <#{user.email}>"
+  else user.name or user.email
+
 module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
     options.engine = handlebarsEngine
@@ -35,9 +40,15 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   gitUser: ->
     gitConfig = require 'git-config'
     done = @async()
-    gitConfig (err, config) ->
-      @user = config?.user or {}
+    gitConfig (err, config) =>
+      @user = config?.user
       done()
+
+  contributors: ->
+    @contributors = [@user]
+      .filter(Boolean)
+      .map(contributor)
+      .filter(Boolean)
 
   project: ->
     @copy '../.editorconfig', '.editorconfig'
