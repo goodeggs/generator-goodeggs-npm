@@ -7,7 +7,7 @@ describe 'goodeggs-npm generator', ->
       if err
         return done(err)
 
-      @app = helpers.createGenerator('goodeggs-npm', ['../'])
+      @app = helpers.createGenerator('goodeggs-npm:app', ['../app/index.js'])
       done()
 
   it 'creates expected files', (done) ->

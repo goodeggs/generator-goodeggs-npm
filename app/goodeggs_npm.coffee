@@ -9,7 +9,8 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
         skipInstall: options['skip-install']
         bower: false
 
-    @pkg = require './package.json'
+    @sourceRoot path.join __dirname, '../templates'
+    @pkg = require '../package.json'
 
   askFor: ->
     cb = @async()
