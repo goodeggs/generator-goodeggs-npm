@@ -16,6 +16,12 @@ generator-goodeggs-npm isn't published to NPM, since it's just for us.  Point at
 $ npm install -g git+https://github.com/goodeggs/generator-goodeggs-npm
 ```
 
+Or even better, checkout and link the repo so you can quickly fix things that don't work right:
+```
+$ git clone https://github.com/goodeggs/generator-goodeggs-npm.git
+$ cd generator-goodeggs-git && npm link
+```
+
 Then you can start a new node module with:
 ```
 $ yo goodeggs-npm
