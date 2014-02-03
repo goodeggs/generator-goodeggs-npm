@@ -10,13 +10,19 @@
     {{~/each}}
   ],
   {{/if~}}
+  "main": "{{underscored pkgname}}",
   "repository": {
     "type": "git",
     "url": "git://github.com/goodeggs/{{ appname }}.git"
   },
   "homepage": "https://github.com/goodeggs/{{ appname }}",
   "bugs": "https://github.com/goodeggs/{{ appname }}/issues",
-  "dependencies": {},
+  "dependencies": {
+  },
+  "devDependencies": {
+    "coffee-script": ">=1.7.x",
+    "mocha": "~1.x.x"
+  },
   "scripts": {
     "test": "mocha"
   }

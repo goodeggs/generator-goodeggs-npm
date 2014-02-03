@@ -27,14 +27,29 @@ describe 'goodeggs-npm generator', ->
     ]
     done()
 
-  it 'names the node package', ->
-    assert.fileContent 'package.json', /// "name":\s"#{pkgname}" ///
+  describe 'package.json', ->
+    it 'includes package name and description', ->
+      assert.fileContent 'package.json', /// "name":\s"#{pkgname}" ///
+      assert.fileContent 'package.json', /// "description":\s"#{description}" ///
 
-  it 'scaffolds a README', ->
-    assert.fileContent 'README.md', /// #{pkgname} ///
-    assert.fileContent 'README.md', /// #{description} ///
+  describe 'README.md', ->
+    it 'includes package name and description', ->
+      assert.fileContent 'README.md', /// #{pkgname} ///
+      assert.fileContent 'README.md', /// #{description} ///
 
-  it 'adds badges', ->
-    assert.fileContent 'README.md', /// travis-ci ///
-    assert.fileContent 'README.md', /// badge.fury.io/js ///
+    it 'includes badges', ->
+      assert.fileContent 'README.md', /// travis-ci ///
+      assert.fileContent 'README.md', /// badge.fury.io/js ///
+
+  describe 'test', ->
+    it 'fails', (done) ->
+      Mocha = require 'mocha'
+      mocha = new Mocha reporter: (runner) ->
+        runner.on 'fail', (test, err) ->
+          assert /busted/.test err
+          done()
+      mocha.addFile "../temp/test/french_omelette.test.coffee"
+      mocha.run()
+
+
 

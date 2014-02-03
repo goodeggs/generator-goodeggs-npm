@@ -1,6 +1,7 @@
 path = require 'path'
 yeoman = require 'yeoman-generator'
 handlebarsEngine = require './handlebars_engine'
+{underscored} = require 'underscore.string'
 
 contributor = (user) ->
   if user.name and user.email
@@ -56,6 +57,8 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy 'travis.yml', '.travis.yml'
     @template '_package.json', 'package.json'
     @template '_README.md', 'README.md'
+    @write "#{underscored @pkgname}.js", ''
 
   test: ->
     @copy '../test/mocha.opts', 'test/mocha.opts'
+    @copy 'test.coffee', "test/#{underscored @pkgname}.test.coffee"
