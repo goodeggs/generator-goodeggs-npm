@@ -21,7 +21,8 @@
     "url": "git://github.com/goodeggs/generator-goodeggs-npm.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "postinstall": "bundle install"
   },
   "dependencies": {
     "yeoman-generator": "~0.16.0",

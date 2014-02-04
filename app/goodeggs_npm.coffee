@@ -3,11 +3,23 @@ path = require 'path'
 yeoman = require 'yeoman-generator'
 handlebarsEngine = require './handlebars_engine'
 {underscored, dasherize} = require 'underscore.string'
+childProcess = require 'child_process'
 
 contributor = (user) ->
   if user.name and user.email
   then "#{user.name} <#{user.email}>"
   else user.name or user.email
+
+bundleExec = (args..., done) ->
+  args.unshift 'exec'
+  env = Object.create process.env
+  env.BUNDLE_GEMFILE = path.join __dirname, '../Gemfile'
+  child = childProcess.spawn 'bundle', args,
+    stdio: 'inherit'
+    env: env
+  child.on 'close', done
+
+hub = (args...) -> bundleExec 'hub', args...
 
 module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
@@ -66,6 +78,6 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy '../test/mocha.opts', 'test/mocha.opts'
     @copy 'test.coffee', "test/#{underscored @pkgname}.test.coffee"
 
-  maybeGit: ->
-    return if fs.existsSync '.git'
-    @template 'git/config', '.git/config'
+  git: ->
+    done = @async()
+    hub 'init', done
