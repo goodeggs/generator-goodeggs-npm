@@ -2,7 +2,7 @@
   "name": "{{ pkgname }}",
   "version": "0.0.0",
   "description": "{{ description }}",
-  "author": "Good Eggs Engineering <eng@goodeggs.com>",
+  "author": "Good Eggs <open-source@goodeggs.com>",
   {{~#if contributors}}
   "contributors": [
     {{#each contributors~}}
