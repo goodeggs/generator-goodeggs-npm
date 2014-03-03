@@ -1,7 +1,7 @@
 fs = require 'fs'
 path = require 'path'
 yeoman = require 'yeoman-generator'
-handlebarsEngine = require './handlebars_engine'
+handlebarsEngine = require 'yeoman-handlebars-engine'
 {underscored, dasherize} = require 'underscore.string'
 childProcess = require 'child_process'
 
