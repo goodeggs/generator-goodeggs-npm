@@ -10,7 +10,14 @@ You need Yeoman:
 $ npm install -g yo
 ```
 
-generator-goodeggs-npm isn't published to NPM, since it's just for us.  Point at the URL instead:
+generator-goodeggs-npm isn't published to NPM, since it's just for us.
+You can download it from our private NPM if you're connected to it:
+
+```
+$ npm install -g generator-goodeggs-npm
+```
+
+Or you can just point at the URL instead:
 
 ```
 $ npm install -g git+https://github.com/goodeggs/generator-goodeggs-npm
@@ -24,5 +31,7 @@ $ cd generator-goodeggs-npm && npm link
 
 Then you can start a new node module with:
 ```
+$ mkdir my_special_module
+$ cd $_
 $ yo goodeggs-npm
 ```
