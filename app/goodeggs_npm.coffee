@@ -24,7 +24,7 @@ hub = (args...) -> bundleExec 'hub', args...
 module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
     options.engine = handlebarsEngine
-    yeoman.generators.Base.apply this, arguments
+    yeoman.generators.Base.apply @, arguments
     @on 'end', ->
       @installDependencies
         skipInstall: options['skip-install']
@@ -48,7 +48,6 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
       name: 'description'
       message: 'Describe your package'
       default: ''
-
     }]
     @prompt prompts, ({@pkgname, @description}) =>
       cb()
