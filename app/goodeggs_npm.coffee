@@ -10,16 +10,12 @@ contributor = (user) ->
   then "#{user.name} <#{user.email}>"
   else user.name or user.email
 
-bundleExec = (args..., done) ->
-  args.unshift 'exec'
+git = (args..., done) ->
   env = Object.create process.env
-  env.BUNDLE_GEMFILE = path.join __dirname, '../Gemfile'
-  child = childProcess.spawn 'bundle', args,
+  child = childProcess.spawn 'git', args,
     stdio: 'inherit'
     env: env
   child.on 'close', done
-
-hub = (args...) -> bundleExec 'hub', args...
 
 module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
@@ -79,4 +75,4 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
 
   git: ->
     done = @async()
-    hub 'init', done
+    git 'init', done

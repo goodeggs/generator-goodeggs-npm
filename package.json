@@ -13,7 +13,8 @@
   "bugs": "https://github.com/goodeggs/generator-goodeggs-npm/issues",
   "author": "Good Eggs <open-source@goodeggs.com>",
   "contributors": [
-    "Adam Hull <adam@hmlad.com>"
+    "Adam Hull <adam@hmlad.com>",
+    "Max Edmands <max@goodeggs.com>"
   ],
   "main": "app/index.js",
   "repository": {
@@ -21,8 +22,7 @@
     "url": "git://github.com/goodeggs/generator-goodeggs-npm.git"
   },
   "scripts": {
-    "test": "mocha",
-    "postinstall": "bundle install"
+    "test": "mocha"
   },
   "dependencies": {
     "yeoman-generator": "~0.16.0",
