@@ -10,6 +10,7 @@
     {{~/each}}
   ],
   {{/if~}}
+  "license": "{{ license }}",
   "main": "{{underscored pkgname}}",
   "repository": {
     "type": "git",

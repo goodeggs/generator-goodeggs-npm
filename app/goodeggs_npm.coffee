@@ -44,8 +44,14 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
       name: 'description'
       message: 'Describe your package'
       default: ''
+    }, {
+      type: 'list'
+      name: 'license'
+      message: 'What license would you like to use?'
+      choices: ['MIT', 'LGPL']
+      default: 'MIT'
     }]
-    @prompt prompts, ({@pkgname, @description}) =>
+    @prompt prompts, ({@pkgname, @description, @license}) =>
       cb()
 
   gitUser: ->
@@ -65,6 +71,8 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy '../.editorconfig', '.editorconfig'
     @copy 'gitignore', '.gitignore'
     @copy 'travis.yml', '.travis.yml'
+    @copy "LICENSE_#{@license}.md", 'LICENSE.md'
+    @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md'
     @template '_package.json', 'package.json'
     @template '_README.md', 'README.md'
     @write "#{underscored @pkgname}.js", ''
