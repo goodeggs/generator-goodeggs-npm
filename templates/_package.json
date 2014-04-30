@@ -43,11 +43,11 @@
     "link": "browserify lib/index.js > {{ pkgname }}.js",
     "minify": "uglifyjs {{ pkgname }}.js > {{ pkgname }}.min.js",
     "build": "npm run compile && npm run link && npm run minify",
-    "pretest": "npm run build"
   {{else}}
     "build": "npm run compile",
     "test": "mocha",
-    "pretest": "npm run build"
   {{/if~}}
+    "test": "mocha",
+    "pretest": "npm run build"
   }
 }

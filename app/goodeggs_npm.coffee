@@ -91,13 +91,17 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @template '_package.json', 'package.json'
     @template '_bower.json', 'bower.json' if @angular
     @template '_README.md', 'README.md'
+
     @mkdir 'src'
     @write "src/index.coffee", '# source code goes here\n'
+
+    @mkdir 'lib'
+    @write "lib/index.js", '// source code goes here\n'
 
   test: ->
     @copy '../test/mocha.opts', 'test/mocha.opts' unless @angular
     @template '_karma.conf.js', 'karma.conf.js' if @angular
-    @copy 'test.coffee', "test/#{@pkgname}.test.coffee"
+    @copy 'test.coffee', "test/#{@_.underscored @pkgname}.test.coffee"
 
   git: ->
     done = @async()
