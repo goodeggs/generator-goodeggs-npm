@@ -79,11 +79,11 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md'
     @template '_package.json', 'package.json'
     @template '_README.md', 'README.md'
-    @write "#{underscored @pkgname}.js", ''
+    @write "#{@_.underscored @pkgname}.js", ''
 
   test: ->
     @copy '../test/mocha.opts', 'test/mocha.opts'
-    @copy 'test.coffee', "test/#{underscored @pkgname}.test.coffee"
+    @copy 'test.coffee', "test/#{@_.underscored @pkgname}.test.coffee"
 
   git: ->
     done = @async()
