@@ -11,7 +11,7 @@
   ],
   {{/if~}}
   "license": "{{ license }}",
-  "main": "{{underscored pkgname}}",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/goodeggs/{{ reposlug }}.git"
@@ -25,6 +25,9 @@
     "mocha": "~1.x.x"
   },
   "scripts": {
-    "test": "mocha"
+    "compile": "coffee --bare --compile --output lib/ src/",
+    "build": "npm run compile",
+    "test": "mocha",
+    "pretest": "npm run build"
   }
 }
