@@ -2,7 +2,6 @@ fs = require 'fs'
 path = require 'path'
 yeoman = require 'yeoman-generator'
 handlebarsEngine = require 'yeoman-handlebars-engine'
-{underscored, dasherize} = require 'underscore.string'
 childProcess = require 'child_process'
 
 contributor = (user) ->
@@ -34,24 +33,40 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   askFor: ->
     cb = @async()
 
-    prompts = [{
-      type: 'input'
-      name: 'pkgname'
-      message: 'Name your NPM package'
-      default: @reposlug
-    }, {
-      type: 'input'
-      name: 'description'
-      message: 'Describe your package'
-      default: ''
-    }, {
-      type: 'list'
-      name: 'license'
-      message: 'What license would you like to use?'
-      choices: ['MIT', 'LGPL']
-      default: 'MIT'
-    }]
-    @prompt prompts, ({@pkgname, @description, @license}) =>
+    prompts = [
+      {
+        type: 'input'
+        name: 'pkgtitle'
+        message: 'Name your NPM package'
+        default: @_.titleize @_.humanize @reposlug
+      }
+      {
+        type: 'input'
+        name: 'description'
+        message: 'Describe your package'
+        default: ''
+      }
+      {
+        type: 'list'
+        name: 'license'
+        message: 'What license would you like to use?'
+        choices: ['MIT', 'LGPL']
+        default: 'MIT'
+      }
+      {
+        type: 'list'
+        name: 'framework'
+        message: 'Is this a plugin for a framework?'
+        choices: [
+          {name: 'nope', value: 'none'}
+          {name: 'AngularJS', value: 'angular'}
+        ]
+      }
+    ]
+    @prompt prompts, ({framework, @pkgtitle, @description, @license}) =>
+      @pkgname = @_.dasherize @pkgtitle.toLowerCase()
+      console.log {@pkgname, @pkgtitle}
+      @angular = framework is 'angular'
       cb()
 
   gitUser: ->
@@ -74,12 +89,15 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy "LICENSE_#{@license}.md", 'LICENSE.md'
     @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md'
     @template '_package.json', 'package.json'
+    @template '_bower.json', 'bower.json' if @angular
     @template '_README.md', 'README.md'
-    @write "#{underscored @pkgname}.js", ''
+    @mkdir 'src'
+    @write "src/index.coffee", '# source code goes here\n'
 
   test: ->
-    @copy '../test/mocha.opts', 'test/mocha.opts'
-    @copy 'test.coffee', "test/#{underscored @pkgname}.test.coffee"
+    @copy '../test/mocha.opts', 'test/mocha.opts' unless @angular
+    @template '_karma.conf.js', 'karma.conf.js' if @angular
+    @copy 'test.coffee', "test/#{@pkgname}.test.coffee"
 
   git: ->
     done = @async()
