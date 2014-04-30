@@ -1,4 +1,7 @@
+{{~#unless angular}}
 {{camelize pkgname}} = require '..'
+
+{{/unless~}}
 
 describe '{{pkgname}}', ->
   it 'works', ->

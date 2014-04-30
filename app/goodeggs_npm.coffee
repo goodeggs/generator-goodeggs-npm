@@ -53,9 +53,20 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
         choices: ['MIT', 'LGPL']
         default: 'MIT'
       }
+      {
+        type: 'list'
+        name: 'framework'
+        message: 'Is this a plugin for a framework?'
+        choices: [
+          {name: 'nope', value: 'none'}
+          {name: 'AngularJS', value: 'angular'}
+        ]
+      }
     ]
-    @prompt prompts, ({@pkgtitle, @description, @license}) =>
+    @prompt prompts, ({framework, @pkgtitle, @description, @license}) =>
       @pkgname = @_.dasherize @pkgtitle.toLowerCase()
+      console.log {@pkgname, @pkgtitle}
+      @angular = framework is 'angular'
       cb()
 
   gitUser: ->
@@ -78,6 +89,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy "LICENSE_#{@license}.md", 'LICENSE.md'
     @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md'
     @template '_package.json', 'package.json'
+    @template '_bower.json', 'bower.json' if @angular
     @template '_README.md', 'README.md'
 
     @mkdir 'src'
@@ -87,7 +99,8 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @write "lib/index.js", '// source code goes here\n'
 
   test: ->
-    @copy '../test/mocha.opts', 'test/mocha.opts'
+    @copy '../test/mocha.opts', 'test/mocha.opts' unless @angular
+    @template '_karma.conf.js', 'karma.conf.js' if @angular
     @copy 'test.coffee', "test/#{@_.underscored @pkgname}.test.coffee"
 
   git: ->
