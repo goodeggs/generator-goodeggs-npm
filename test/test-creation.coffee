@@ -63,19 +63,19 @@ describe 'goodeggs-npm generator', ->
         mocha.run()
 
   describe 'when user supplies a package name and description', ->
-    pkgname = 'french-omelette'
+    pkgtitle = 'French Omelette'
     description = "Dish made from beaten eggs quickly cooked with butter or oil in a frying pan"
 
     before (done) ->
-      @runGenerator {pkgname, description}, done
+      @runGenerator {pkgtitle, description}, done
 
     describe 'package.json', ->
       it 'includes package name matching parent directory', ->
-        assert.fileContent 'package.json', /// "name":\s"#{pkgname}" ///
+        assert.fileContent 'package.json', /// "name":\s"french-omelette" ///
         assert.fileContent 'package.json', /// "description":\s"#{description}" ///
 
     describe 'README.md', ->
       it 'includes package name and description', ->
-        assert.fileContent 'README.md', /// #{pkgname} ///
+        assert.fileContent 'README.md', /// #{pkgtitle} ///
         assert.fileContent 'README.md', /// #{description} ///
 
