@@ -8,6 +8,14 @@
 
 {{ description }}
 
+## Contributing
+
+```
+$ git clone https://github.com/goodeggs/{{ reposlug }} && cd {{ reposlug }}
+$ npm install
+$ npm test
+```
+
 ## Code of Conduct
 
 [Code of Conduct](https://github.com/goodeggs/{{ pkgname }}/blob/master/CODE_OF_CONDUCT.md)
