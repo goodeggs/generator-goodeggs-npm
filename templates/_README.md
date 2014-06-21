@@ -4,7 +4,11 @@
 [![NPM version](https://badge.fury.io/js/{{ pkgname }}.png)](http://badge.fury.io/js/{{ pkgname }})
 {{/unless}}
 
+{{#if private}}
+[![Build Status](https://magnum.travis-ci.com/goodeggs/{{ reposlug }}.png)](https://magnum.travis-ci.com/goodeggs/{{ reposlug }})
+{{else}}
 [![Build Status](https://travis-ci.org/goodeggs/{{ reposlug }}.png)](https://travis-ci.org/goodeggs/{{ reposlug }})
+{{/if}}
 
 {{ description }}
 
