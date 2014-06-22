@@ -50,8 +50,8 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
         type: 'list'
         name: 'license'
         message: 'What license would you like to use?'
-        choices: ['MIT', 'LGPL']
-        default: 'MIT'
+        choices: ['Private', 'MIT', 'LGPL']
+        default: 'Private'
       }
       {
         type: 'list'
@@ -67,6 +67,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
       @pkgname = @_.dasherize @pkgtitle.toLowerCase()
       console.log {@pkgname, @pkgtitle}
       @angular = framework is 'angular'
+      @private = @license is 'Private'
       cb()
 
   gitUser: ->
@@ -86,7 +87,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy '../.editorconfig', '.editorconfig'
     @copy 'gitignore', '.gitignore'
     @copy 'travis.yml', '.travis.yml'
-    @copy "LICENSE_#{@license}.md", 'LICENSE.md'
+    @copy "LICENSE_#{@license}.md", 'LICENSE.md' unless @private
     @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md'
     @template '_package.json', 'package.json'
     @template '_bower.json', 'bower.json' if @angular
