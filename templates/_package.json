@@ -46,8 +46,7 @@
   {{else}}
     "build": "npm run compile",
     "test": "mocha",
-  {{/if~}}
-    "test": "mocha",
+  {{/if}}
     "pretest": "npm run build"
   }
 }
