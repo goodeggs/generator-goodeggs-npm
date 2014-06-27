@@ -94,7 +94,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @template '_README.md', 'README.md'
 
     @mkdir 'src'
-    @write "src/index.coffee", '# source code goes here\n'
+    @copy '_index.coffee', 'src/index.coffee'
 
     @mkdir 'lib'
     @write "lib/index.js", '// source code goes here\n'
