@@ -2,17 +2,6 @@ path = require 'path'
 helpers = require('yeoman-generator').test
 assert = require('yeoman-generator').assert
 
-# TODO: PR into http://yeoman.github.io/generator/helpers.js.html#line183
-#       - preserve default prompt values
-mockPrompt = (generator, answers) ->
-  origPrompt = generator.prompt
-  generator.prompt = (prompts, done) ->
-    defaults = {}
-    for prompt in prompts
-      defaults[prompt.name] = prompt.default
-    done @_.assign defaults, answers
-  generator.origPrompt = origPrompt
-
 describe 'goodeggs-npm generator', ->
   reposlug = 'node-french-omelette' # prefix with node to test module name different from repo name
 
@@ -25,7 +14,7 @@ describe 'goodeggs-npm generator', ->
         @app = helpers.createGenerator('goodeggs-npm:app', ['../../app/index.js'])
         @app.options['skip-install'] = true
 
-        mockPrompt @app, responses
+        helpers.mockPrompt @app, responses
         @app.run {pkgname: 'foo'}, ->
           done()
 
