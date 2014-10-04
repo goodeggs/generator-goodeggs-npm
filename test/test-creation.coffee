@@ -7,11 +7,11 @@ describe 'goodeggs-npm generator', ->
 
   before ->
     @runGenerator = (responses, done) ->
-      helpers.testDirectory path.join(__dirname, '../temp/', reposlug), (err) =>
+      helpers.testDirectory path.join(__dirname, 'generated', reposlug), (err) =>
         if err
           return done(err)
 
-        @app = helpers.createGenerator('goodeggs-npm:app', ['../../app/index.js'])
+        @app = helpers.createGenerator('goodeggs-npm:app', ['../../../app/index.js'])
         @app.options['skip-install'] = true
 
         helpers.mockPrompt @app, responses
@@ -59,9 +59,12 @@ describe 'goodeggs-npm generator', ->
       @runGenerator {pkgtitle, description}, done
 
     describe 'package.json', ->
-      it 'includes package name matching parent directory', ->
+      it 'includes supplied package name and description', ->
         assert.fileContent 'package.json', /// "name":\s"french-omelette" ///
         assert.fileContent 'package.json', /// "description":\s"#{description}" ///
+
+      it 'does not use parent directory name', ->
+        assert.noFileContent 'package.json', /// "name":\s"#{reposlug}" ///
 
     describe 'README.md', ->
       it 'includes package name and description', ->
