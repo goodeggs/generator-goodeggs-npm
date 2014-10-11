@@ -7,10 +7,10 @@
 [![Build Status](https://magnum.travis-ci.com/goodeggs/{{ reposlug }}.png)](https://magnum.travis-ci.com/goodeggs/{{ reposlug }})
 {{else}}{{#unless angular~}}
 
-[![NPM version](https://badge.fury.io/js/{{ pkgname }}.png)](https://www.npmjs.org/package/{{ pkgname }})
+[![NPM version](http://img.shields.io/npm/v/{{ pkgname }}.svg?style=flat)](https://www.npmjs.org/package/{{ pkgname }})
 {{/unless~}}
 
-[![Build Status](https://travis-ci.org/goodeggs/{{ reposlug }}.png)](https://travis-ci.org/goodeggs/{{ reposlug }})
+[![Build Status](http://img.shields.io/travis/goodeggs/{{ reposlug }}.svg?style=flat)](https://travis-ci.org/goodeggs/{{ reposlug }})
 {{~/if}}
 
 ## Contributing

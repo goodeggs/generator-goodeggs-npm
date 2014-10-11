@@ -68,7 +68,7 @@ describe 'goodeggs-npm generated files', ->
 
     describe 'README.md', ->
       it 'includes private badges', ->
-        assert.noFileContent 'README.md', /// badge.*npmjs\.org ///
+        assert.noFileContent 'README.md', /// shields\.io\/npm ///
         assert.fileContent 'README.md', /// magnum\.travis-ci\.com.*\.png ///
 
   describe 'open source package', ->
@@ -93,8 +93,8 @@ describe 'goodeggs-npm generated files', ->
 
     describe 'README.md', ->
       it 'includes public badges', ->
-        assert.fileContent 'README.md', /// badge.*npmjs\.org ///
-        assert.fileContent 'README.md', /// travis-ci\.org.*\.png ///
+        assert.fileContent 'README.md', /// shields\.io\/npm ///
+        assert.fileContent 'README.md', /// shields\.io\/travis ///
 
       it 'leaves no empty lines in between the badegs so they flow nicely', ->
         assert.fileContent 'README.md', /NPM version.*\n.*Build Status/
