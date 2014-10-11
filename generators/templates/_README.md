@@ -1,16 +1,17 @@
 # {{ pkgtitle }}
 
-{{~#unless angular}}
-[![NPM version](https://badge.fury.io/js/{{ pkgname }}.png)](http://badge.fury.io/js/{{ pkgname }})
-{{/unless}}
-
-{{#if private}}
-[![Build Status](https://magnum.travis-ci.com/goodeggs/{{ reposlug }}.png)](https://magnum.travis-ci.com/goodeggs/{{ reposlug }})
-{{else}}
-[![Build Status](https://travis-ci.org/goodeggs/{{ reposlug }}.png)](https://travis-ci.org/goodeggs/{{ reposlug }})
-{{/if}}
-
 {{ description }}
+
+{{#if private~}}
+
+[![Build Status](https://magnum.travis-ci.com/goodeggs/{{ reposlug }}.png)](https://magnum.travis-ci.com/goodeggs/{{ reposlug }})
+{{else}}{{#unless angular~}}
+
+[![NPM version](https://badge.fury.io/js/{{ pkgname }}.png)](https://www.npmjs.org/package/{{ pkgname }})
+{{/unless~}}
+
+[![Build Status](https://travis-ci.org/goodeggs/{{ reposlug }}.png)](https://travis-ci.org/goodeggs/{{ reposlug }})
+{{~/if}}
 
 ## Contributing
 
@@ -20,12 +21,12 @@ $ npm install
 $ npm test
 ```
 
+{{~#unless private}}
 ## Code of Conduct
 
 [Code of Conduct](https://github.com/goodeggs/{{ pkgname }}/blob/master/CODE_OF_CONDUCT.md)
 for contributing to or participating in this project.
 
-{{~#unless private}}
 ## License
 
 [{{ license }}](https://github.com/goodeggs/{{ pkgname }}/blob/master/LICENSE.md)
