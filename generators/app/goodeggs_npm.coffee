@@ -65,6 +65,17 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
         when: (answers) -> not answers.private
       }
       {
+        type: 'input'
+        name: 'keywords'
+        message: 'Keywords?'
+        default: ''
+        when: (answers) -> not answers.private
+        filter: (input) ->
+          input.split(',')
+          .map((term) -> term.trim())
+          .filter(Boolean)
+      }
+      {
         type: 'list'
         name: 'framework'
         message: 'Is this a plugin for a framework?'
@@ -74,7 +85,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
         ]
       }
     ]
-    @prompt prompts, ({framework, @pkgtitle, @description, @private, @license}) =>
+    @prompt prompts, ({framework, @pkgtitle, @description, @private, @license, @keywords}) =>
       @pkgname = @_.dasherize @pkgtitle.toLowerCase()
       @angular = framework is 'angular'
       if @private

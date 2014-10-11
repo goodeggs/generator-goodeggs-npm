@@ -69,8 +69,9 @@ describe 'goodeggs-npm generated files', ->
         assert.fileContent 'README.md', /// magnum\.travis-ci\.com.*\.png ///
 
   describe 'open source package', ->
+    keywords = ['sesquipedalian', 'prolix']
     before (done) ->
-      @runGenerator {private: false}, done
+      @runGenerator {private: false, keywords}, done
 
     it 'includes code of conduct', ->
       assert.file 'CODE_OF_CONDUCT.md'
@@ -81,6 +82,11 @@ describe 'goodeggs-npm generated files', ->
     describe 'package.json', ->
       it 'omits publishConfig', ->
         assert.noFileContent 'package.json', /"publishConfig":/
+
+      it 'includes keywords', ->
+        assert.fileContent 'package.json', /"keywords": \[/
+        for keyword in keywords
+          assert.fileContent 'package.json', /// "#{keyword} ///
 
     describe 'README.md', ->
       it 'includes public badges', ->
