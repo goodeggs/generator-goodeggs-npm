@@ -88,7 +88,6 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy 'travis.yml', '.travis.yml'
     @copy "LICENSE_#{@license}.md", 'LICENSE.md' unless @private
     @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md'
-    @template '_package.json', 'package.json'
     @template '_bower.json', 'bower.json' if @angular
     @template '_README.md', 'README.md'
 
@@ -97,6 +96,10 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
 
     @mkdir 'lib'
     @write "lib/index.js", '// source code goes here\n'
+
+  packageJson: ->
+    packageJson = require '../package_json'
+    @write 'package.json', packageJson(@)
 
   test: ->
     @copy '../../test/mocha.opts', 'test/mocha.opts' unless @angular

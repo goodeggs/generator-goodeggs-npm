@@ -21,6 +21,9 @@ describe 'goodeggs-npm generated files', ->
       it 'includes package name matching parent directory', ->
         assert.fileContent 'package.json', /// "name":\s"#{@reposlug}" ///
 
+      it 'adds contributors', ->
+        assert.fileContent 'package.json', /"contributors":/
+
     describe 'README.md', ->
       it 'includes badges', ->
         assert.fileContent 'README.md', /// travis-ci ///

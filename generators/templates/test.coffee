@@ -1,4 +1,4 @@
-{{~#unless angular}}
+{{~#unless angular~}}
 {{camelize pkgname}} = require '..'
 
 {{/unless~}}
