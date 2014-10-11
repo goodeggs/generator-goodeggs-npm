@@ -11,7 +11,7 @@ before ->
       options =
         'skip-install': true
         'quiet': true
-      @app = helpers.createGenerator('goodeggs-npm:app', ['../../../app/index.js'], [], options)
+      @app = helpers.createGenerator('goodeggs-npm:app', ['../../../generators/app/index.js'], [], options)
 
       helpers.mockPrompt @app, responses
       @app.run {pkgname: 'foo'}, ->

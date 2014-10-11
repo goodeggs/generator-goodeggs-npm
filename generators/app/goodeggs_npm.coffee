@@ -26,7 +26,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
         bower: false
 
     @sourceRoot path.join __dirname, '../templates'
-    @pkg = require '../package.json'
+    @pkg = require '../../package.json'
 
     @reposlug = path.basename process.cwd()
 
@@ -83,7 +83,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
       .filter(Boolean)
 
   project: ->
-    @copy '../.editorconfig', '.editorconfig'
+    @copy '../../.editorconfig', '.editorconfig'
     @copy 'gitignore', '.gitignore'
     @copy 'travis.yml', '.travis.yml'
     @copy "LICENSE_#{@license}.md", 'LICENSE.md' unless @private
@@ -99,7 +99,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @write "lib/index.js", '// source code goes here\n'
 
   test: ->
-    @copy '../test/mocha.opts', 'test/mocha.opts' unless @angular
+    @copy '../../test/mocha.opts', 'test/mocha.opts' unless @angular
     @template '_karma.conf.js', 'karma.conf.js' if @angular
     @copy 'test.coffee', "test/#{@_.underscored @pkgname}.test.coffee"
 
