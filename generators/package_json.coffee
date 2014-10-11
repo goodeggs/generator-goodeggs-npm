@@ -6,6 +6,8 @@ module.exports = (data, overrides={}) ->
   json = base.apply(data)
   if data.angular
     json = merge json, angular.apply(data)
+  if data.private
+    json = merge json, puhrivate.apply(data)
   json = merge json, overrides
   JSON.stringify json, null, 2
 
@@ -14,7 +16,6 @@ module.exports = (data, overrides={}) ->
 base = ->
   name: @pkgname
   version: "0.0.0"
-  private: @private or undefined
   description: @description
   author: "Good Eggs <open-source@goodeggs.com>"
   contributors: @contributors and @contributors.map helpers.user
@@ -59,3 +60,8 @@ js = ->
     jshint: '*'
   scripts:
     test: "jshint *.js && mocha"
+
+puhrivate = ->
+  publishConfig:
+    registry: "https://goodeggs.registry.nodejitsu.com/"
+    'always-auth': true

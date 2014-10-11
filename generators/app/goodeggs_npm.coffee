@@ -48,10 +48,21 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
       }
       {
         type: 'list'
+        name: 'private'
+        message: 'Is this a private Good Eggs-only package or Open Source?'
+        default: true
+        choices: [
+          {name: 'Private', value: true}
+          {name: 'Open Source', value: false}
+        ]
+      }
+      {
+        type: 'list'
         name: 'license'
         message: 'What license would you like to use?'
-        choices: ['Private', 'MIT', 'LGPL']
-        default: 'Private'
+        choices: ['MIT', 'LGPL']
+        default: 'MIT'
+        when: (answers) -> not answers.private
       }
       {
         type: 'list'
@@ -63,10 +74,11 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
         ]
       }
     ]
-    @prompt prompts, ({framework, @pkgtitle, @description, @license}) =>
+    @prompt prompts, ({framework, @pkgtitle, @description, @private, @license}) =>
       @pkgname = @_.dasherize @pkgtitle.toLowerCase()
       @angular = framework is 'angular'
-      @private = @license is 'Private'
+      if @private
+        @license = 'Private'
       cb()
 
   gitUser: ->
@@ -87,7 +99,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy 'gitignore', '.gitignore'
     @copy 'travis.yml', '.travis.yml'
     @copy "LICENSE_#{@license}.md", 'LICENSE.md' unless @private
-    @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md'
+    @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md' unless @private
     @template '_bower.json', 'bower.json' if @angular
     @template '_README.md', 'README.md'
 
