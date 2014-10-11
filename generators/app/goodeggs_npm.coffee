@@ -19,6 +19,7 @@ git = (args..., done) ->
 module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
     options.engine = handlebarsEngine
+    @quiet = options.quiet
     yeoman.generators.Base.apply @, arguments
     @on 'end', ->
       @installDependencies
@@ -132,3 +133,8 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
   git: ->
     done = @async()
     git 'init', done
+
+  hatch: ->
+    return if @quiet
+    hatch = require 'chicken-hatchling'
+    hatch 1200, @async()

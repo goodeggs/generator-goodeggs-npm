@@ -31,7 +31,8 @@
     "handlebars": "~1.3.0",
     "underscore.string": "~2.3.3",
     "yeoman-handlebars-engine": "^0.1.0",
-    "deepmerge": "~0.2.7"
+    "deepmerge": "~0.2.7",
+    "chicken-hatchling": "0.0.1-chicken"
   },
   "devDependencies": {
     "mocha": "~1.17.1",
