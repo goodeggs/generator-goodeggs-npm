@@ -8,6 +8,8 @@ module.exports = (data, overrides={}) ->
     json = merge json, angular.apply(data)
   if data.private
     json = merge json, puhrivate.apply(data)
+  if data.vanillajs
+    json = merge json, js.apply(data)
   json = merge json, overrides
   JSON.stringify json, null, 2
 
@@ -59,7 +61,10 @@ js = ->
   devDependencies:
     jshint: '*'
   scripts:
-    test: "jshint *.js && mocha"
+    test: "jshint lib/*.js && mocha"
+    prepublish: undefined
+    pretest: undefined
+    compile: undefined
 
 puhrivate = ->
   publishConfig:

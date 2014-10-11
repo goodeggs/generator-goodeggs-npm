@@ -85,8 +85,22 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
           {name: 'AngularJS', value: 'angular'}
         ]
       }
+      {
+        type: 'list'
+        name: 'vanillajs'
+        message: 'You want Coffee with that?'
+        choices: [
+          {name: 'Yes, please', value: false}
+          {name: 'No, plain JavaScript for me', value: true}
+        ]
+        default: false
+        when: ({framework}) ->  framework is 'none'
+      }
     ]
-    @prompt prompts, ({framework, @pkgtitle, @description, @private, @license, @keywords}) =>
+    @prompt prompts, ({
+      framework, @pkgtitle, @description, @private, @license,
+      @keywords, @vanillajs
+    }) =>
       @pkgname = @_.dasherize @pkgtitle.toLowerCase()
       @angular = framework is 'angular'
       if @private
@@ -115,11 +129,11 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @template '_bower.json', 'bower.json' if @angular
     @template '_README.md', 'README.md'
 
-    @mkdir 'src'
-    @copy '_index.coffee', 'src/index.coffee'
-
-    @mkdir 'lib'
-    @write "lib/index.js", '// source code goes here\n'
+  sourceFile: ->
+    if @vanillajs
+      @write "lib/index.js", '// source code goes here\n'
+    else
+      @copy '_index.coffee', 'src/index.coffee'
 
   packageJson: ->
     packageJson = require '../package_json'

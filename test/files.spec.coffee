@@ -22,6 +22,9 @@ describe 'goodeggs-npm generated files', ->
       it 'includes package name matching parent directory', ->
         assert.fileContent 'package.json', /// "name":\s"#{@reposlug}" ///
 
+      it 'main links to the source file', ->
+        assert.fileContent 'package.json', /// "main":\s"lib\/index.js" ///
+
       it 'adds contributors', ->
         assert.fileContent 'package.json', /"contributors":/
 
@@ -96,3 +99,16 @@ describe 'goodeggs-npm generated files', ->
       it 'leaves no empty lines in between the badegs so they flow nicely', ->
         assert.fileContent 'README.md', /NPM version.*\n.*Build Status/
 
+  describe 'chooseing plain JavaScript', ->
+    before (done) ->
+      @runGenerator {vanillajs: true}, done
+
+    it 'creates a file for the module in the lib directory', ->
+      assert.file 'lib/index.js'
+
+    describe 'package.json', ->
+      it 'depends on jshint at development time', ->
+        assert.fileContent 'package.json', /// "jshint": ///
+
+      it 'runs jshint with tests', ->
+        assert.fileContent 'package.json', /// "test":.*jshint ///

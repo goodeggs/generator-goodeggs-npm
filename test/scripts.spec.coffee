@@ -30,17 +30,17 @@ describe 'generated scripts', ->
       if /\bbusted\b/.test data
         loggedBusted = true
 
+  describe 'using coffeescript', ->
+    before (done) ->
+      @runGenerator {vanillajs: false}, done
+
+    it 'npm installs', install
+    it 'npm test fails with expected message', test
+
   describe 'using javascript', ->
     before (done) ->
-      @runGenerator {coffee: false}, done
+      @runGenerator {vanillajs: true}, done
 
     it '`npm install`s', install
     it '`npm test` fails with expected message', test
-
-  # describe 'using coffeescript', ->
-  #   before (done) ->
-  #     @runGenerator {coffee: true}, done
-
-  #   it 'npm installs', install
-  #   it 'npm test fails with expected message', test
 
