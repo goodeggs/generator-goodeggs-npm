@@ -65,7 +65,6 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     ]
     @prompt prompts, ({framework, @pkgtitle, @description, @license}) =>
       @pkgname = @_.dasherize @pkgtitle.toLowerCase()
-      console.log {@pkgname, @pkgtitle}
       @angular = framework is 'angular'
       @private = @license is 'Private'
       cb()
