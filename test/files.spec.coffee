@@ -72,6 +72,9 @@ describe 'goodeggs-npm generated files', ->
         assert.noFileContent 'README.md', /// shields\.io\/npm ///
         assert.fileContent 'README.md', /// magnum\.travis-ci\.com.*\.png ///
 
+      it 'includes no license badge', ->
+        assert.noFileContent 'README.md', /License/
+
   describe 'open source', ->
     keywords = ['sesquipedalian', 'prolix']
     before (done) ->
@@ -99,6 +102,10 @@ describe 'goodeggs-npm generated files', ->
 
       it 'leaves no empty lines in between the badegs so they flow nicely', ->
         assert.fileContent 'README.md', /NPM version.*\n.*Build Status/
+
+      it 'includes a license badge with a link to the license file', ->
+        assert.fileContent 'README.md', ///http://img.shields.io/badge/license-///
+        assert.fileContent 'README.md', ////blob/master/LICENSE.md///
 
   describe 'coffeescript', ->
     before (done) ->

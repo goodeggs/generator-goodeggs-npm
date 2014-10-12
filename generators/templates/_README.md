@@ -7,10 +7,11 @@
 [![Build Status](https://magnum.travis-ci.com/goodeggs/{{ reposlug }}.png)](https://magnum.travis-ci.com/goodeggs/{{ reposlug }})
 {{else}}{{#unless angular~}}
 
-[![NPM version](http://img.shields.io/npm/v/{{ pkgname }}.svg?style=flat)](https://www.npmjs.org/package/{{ pkgname }})
+[![NPM version](http://img.shields.io/npm/v/{{ pkgname }}.svg?style=flat-square)](https://www.npmjs.org/package/{{ pkgname }})
 {{/unless~}}
 
-[![Build Status](http://img.shields.io/travis/goodeggs/{{ reposlug }}.svg?style=flat)](https://travis-ci.org/goodeggs/{{ reposlug }})
+[![Build Status](http://img.shields.io/travis/goodeggs/{{ reposlug }}.svg?style=flat-square)](https://travis-ci.org/goodeggs/{{ reposlug }})
+[![{{ license }} License](http://img.shields.io/badge/license-{{ license }}-blue.svg?style=flat-square)](https://github.com/goodeggs/{{ pkgname }}/blob/master/LICENSE.md)
 {{~/if}}
 
 ## Contributing
@@ -26,10 +27,6 @@ $ npm test
 
 [Code of Conduct](https://github.com/goodeggs/{{ pkgname }}/blob/master/CODE_OF_CONDUCT.md)
 for contributing to or participating in this project.
-
-## License
-
-[{{ license }}](https://github.com/goodeggs/{{ pkgname }}/blob/master/LICENSE.md)
 {{/unless}}
 
 
