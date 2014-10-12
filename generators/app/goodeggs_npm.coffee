@@ -50,7 +50,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
       {
         type: 'list'
         name: 'private'
-        message: 'Is this a private Good Eggs-only package or Open Source?'
+        message: 'Is this a proprietary Good Eggs-only package, or is it Open Source?'
         default: true
         choices: [
           {name: 'Private', value: true}
