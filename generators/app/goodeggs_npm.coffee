@@ -125,6 +125,7 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
     @copy 'travis.yml', '.travis.yml'
     @copy "LICENSE_#{@license}.md", 'LICENSE.md' unless @private
     @copy 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.md' unless @private
+    @copy 'npmignore', '.npmignore'
     @template '_gitignore', '.gitignore'
     @template '_bower.json', 'bower.json' if @angular
     @template '_README.md', 'README.md'
