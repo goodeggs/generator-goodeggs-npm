@@ -5,7 +5,7 @@ assert = require('yeoman-generator').assert
 
 describe 'goodeggs-npm generated files', ->
 
-  describe 'with default prompt values', ->
+  describe 'default prompt values', ->
     before (done) ->
       @runGenerator {}, done
 
@@ -28,7 +28,7 @@ describe 'goodeggs-npm generated files', ->
       it 'adds contributors', ->
         assert.fileContent 'package.json', /"contributors":/
 
-  describe 'when user supplies a package name and description', ->
+  describe 'custom package name and description', ->
     pkgtitle = 'French Omelette'
     description = "Dish made from beaten eggs quickly cooked with butter or oil in a frying pan"
 
@@ -48,7 +48,7 @@ describe 'goodeggs-npm generated files', ->
         assert.fileContent 'README.md', /// #{pkgtitle} ///
         assert.fileContent 'README.md', /// #{description} ///
 
-  describe 'private package', ->
+  describe 'proprietary', ->
     before (done) ->
       @runGenerator {private: true}, done
 
@@ -71,7 +71,7 @@ describe 'goodeggs-npm generated files', ->
         assert.noFileContent 'README.md', /// shields\.io\/npm ///
         assert.fileContent 'README.md', /// magnum\.travis-ci\.com.*\.png ///
 
-  describe 'open source package', ->
+  describe 'open source', ->
     keywords = ['sesquipedalian', 'prolix']
     before (done) ->
       @runGenerator {private: false, keywords}, done
@@ -99,7 +99,7 @@ describe 'goodeggs-npm generated files', ->
       it 'leaves no empty lines in between the badegs so they flow nicely', ->
         assert.fileContent 'README.md', /NPM version.*\n.*Build Status/
 
-  describe 'a coffeescript module', ->
+  describe 'coffeescript', ->
     before (done) ->
       @runGenerator {vanillajs: false}, done
 
@@ -109,7 +109,7 @@ describe 'goodeggs-npm generated files', ->
     it 'ignores lib folder', ->
       assert.fileContent '.gitignore', ///lib\////
 
-  describe 'chooseing plain JavaScript', ->
+  describe 'vanillajs', ->
     before (done) ->
       @runGenerator {vanillajs: true}, done
 
