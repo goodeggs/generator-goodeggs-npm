@@ -17,7 +17,7 @@ module.exports = (data, overrides={}) ->
 
 base = ->
   name: @pkgname
-  version: "0.0.0"
+  version: "1.0.0"
   description: @description
   author: "Good Eggs <open-source@goodeggs.com>"
   contributors: @contributors and @contributors.map helpers.user
