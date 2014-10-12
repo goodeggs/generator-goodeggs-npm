@@ -75,6 +75,9 @@ describe 'goodeggs-npm generated files', ->
       it 'includes no license badge', ->
         assert.noFileContent 'README.md', /License/
 
+      it 'includes no mention of the code of conduct', ->
+        assert.noFileContent 'README.md', /Code of Conduct/
+
   describe 'open source', ->
     keywords = ['sesquipedalian', 'prolix']
     before (done) ->
@@ -106,6 +109,9 @@ describe 'goodeggs-npm generated files', ->
       it 'includes a license badge with a link to the license file', ->
         assert.fileContent 'README.md', ///http://img.shields.io/badge/license-///
         assert.fileContent 'README.md', ////blob/master/LICENSE.md///
+
+      it 'mentions the code of conduct', ->
+        assert.fileContent 'README.md', /Code of Conduct/
 
   describe 'coffeescript', ->
     before (done) ->
