@@ -78,6 +78,9 @@ describe 'goodeggs-npm generated files', ->
       it 'includes no mention of the code of conduct', ->
         assert.noFileContent 'README.md', /Code of Conduct/
 
+      it 'provides a coffeescript usage example', ->
+        assert.fileContent 'README.md', /require 'node-french-omelette'/
+
   describe 'open source', ->
     keywords = ['sesquipedalian', 'prolix']
     before (done) ->
@@ -112,6 +115,9 @@ describe 'goodeggs-npm generated files', ->
 
       it 'mentions the code of conduct', ->
         assert.fileContent 'README.md', /Code of Conduct/
+
+      it 'provides a javascript usage example', ->
+        assert.fileContent 'README.md', ///require\('node-french-omelette'\);///
 
   describe 'coffeescript', ->
     before (done) ->

@@ -14,6 +14,34 @@
 [![{{ license }} License](http://img.shields.io/badge/license-{{ license }}-blue.svg?style=flat-square)](https://github.com/goodeggs/{{ pkgname }}/blob/master/LICENSE.md)
 {{~/if}}
 
+## Usage
+
+{{#if angular~}}
+
+Install from:
+
+- NPM: `npm install {{ pkgname }}`
+- Bower: `bower install {{ pkgname }}`
+
+```javascript
+var app = angular.module('app', ['{{ camelize pkgname }}']);
+```
+{{else~}}
+```
+npm install {{ pkgname }}
+```
+
+{{#if private~}}
+```coffeescript
+{{ camelize pkgname }} = require '{{ pkgname }}'
+```
+{{else~}}
+```javascript
+var {{ camelize pkgname }} = require('{{ pkgname }}');
+```
+{{~/if~}}
+{{~/if}}
+
 ## Contributing
 
 {{#unless private~}}
