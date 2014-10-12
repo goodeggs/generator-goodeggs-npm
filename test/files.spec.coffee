@@ -99,12 +99,25 @@ describe 'goodeggs-npm generated files', ->
       it 'leaves no empty lines in between the badegs so they flow nicely', ->
         assert.fileContent 'README.md', /NPM version.*\n.*Build Status/
 
+  describe 'a coffeescript module', ->
+    before (done) ->
+      @runGenerator {vanillajs: false}, done
+
+    it 'creates a file for the module in the src directory', ->
+      assert.file 'src/index.coffee'
+
+    it 'ignores lib folder', ->
+      assert.fileContent '.gitignore', ///lib\////
+
   describe 'chooseing plain JavaScript', ->
     before (done) ->
       @runGenerator {vanillajs: true}, done
 
     it 'creates a file for the module in the lib directory', ->
       assert.file 'lib/index.js'
+
+    it 'does not ignore lib folder', ->
+      assert.noFileContent '.gitignore', ///lib\////
 
     describe 'package.json', ->
       it 'depends on jshint at development time', ->
