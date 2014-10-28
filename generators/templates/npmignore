@@ -1,6 +1,4 @@
 .editorconfig
-.git/
 .gitignore
 .travis.yml
-npm-debug.log
 test/
