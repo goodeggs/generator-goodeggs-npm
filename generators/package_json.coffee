@@ -31,7 +31,7 @@ base = ->
   bugs: "https://github.com/goodeggs/#{@reposlug}/issues"
   dependencies: {}
   devDependencies:
-    "coffee-script": ">=1.7.x"
+    "coffee-script": ">=1.8.x"
     "mocha": "~1.x.x"
   scripts:
     compile: "coffee --bare --compile --output lib/ src/"
