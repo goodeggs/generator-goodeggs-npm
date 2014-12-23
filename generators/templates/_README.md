@@ -23,7 +23,7 @@ Install from:
 - NPM: `npm install {{ pkgname }}`
 - Bower: `bower install {{ pkgname }}`
 
-```javascript
+```js
 var app = angular.module('app', ['{{ camelize pkgname }}']);
 ```
 {{else~}}
@@ -32,11 +32,11 @@ npm install {{ pkgname }}
 ```
 
 {{#if private~}}
-```coffeescript
+```coffee
 {{ camelize pkgname }} = require '{{ pkgname }}'
 ```
 {{else~}}
-```javascript
+```js
 var {{ camelize pkgname }} = require('{{ pkgname }}');
 ```
 {{~/if~}}
