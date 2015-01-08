@@ -29,7 +29,7 @@ It's first recommend you speak with respective project leads and committers abou
 If that doesn't work:
 
 * You can report any code of conduct compliance issues by opening an issue in this repository
-* If you prefer a more discreet route, please email [opensource@goodeggs.com](opensource@goodeggs.com)
+* If you prefer a more discreet route, please email [open-source@goodeggs.com](open-source@goodeggs.com)
 
 ## Credit (and copyright information)
 
