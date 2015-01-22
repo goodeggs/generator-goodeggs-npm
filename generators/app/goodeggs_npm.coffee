@@ -114,6 +114,10 @@ module.exports = class GoodeggsNpmGenerator extends yeoman.generators.Base
       @user = config?.user
       done()
 
+  author: ->
+    if @private
+      contributor @user
+
   contributors: ->
     @contributors = [@user]
       .filter(Boolean)

@@ -19,7 +19,7 @@ base = ->
   name: @pkgname
   version: "1.0.0"
   description: @description
-  author: "Good Eggs <open-source@goodeggs.com>"
+  author: @author?() or "Good Eggs <open-source@goodeggs.com>"
   contributors: @contributors and @contributors.map helpers.user
   license: @license
   keywords: @keywords?.length and @keywords or undefined
