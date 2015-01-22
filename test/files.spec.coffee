@@ -67,6 +67,10 @@ describe 'goodeggs-npm generated files', ->
         assert.fileContent 'package.json', /"publishConfig":/
         assert.fileContent 'package.json', /https:\/\/goodeggs\.registry/
 
+      it 'open-source is not the author', ->
+        assert.fileContent 'package.json', /"author":/
+        assert.noFileContent 'package.json', /"author":.*open-source@goodeggs\.com/
+
     describe 'README.md', ->
       it 'includes private badges', ->
         assert.noFileContent 'README.md', /// shields\.io\/npm ///
@@ -100,6 +104,9 @@ describe 'goodeggs-npm generated files', ->
         assert.fileContent 'package.json', /"keywords": \[/
         for keyword in keywords
           assert.fileContent 'package.json', /// "#{keyword} ///
+
+      it 'open-source is the author', ->
+        assert.fileContent 'package.json', /"author":.*open-source@goodeggs\.com/
 
     describe 'README.md', ->
       it 'includes public badges', ->
