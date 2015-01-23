@@ -45,7 +45,7 @@ var {{ camelize pkgname }} = require('{{ pkgname }}');
 ## Contributing
 
 {{#unless private~}}
-Please follow our [Code of Conduct](https://github.com/goodeggs/mongoose-webdriver/blob/master/CODE_OF_CONDUCT.md)
+Please follow our [Code of Conduct](https://github.com/goodeggs/{{ reposlug }}/blob/master/CODE_OF_CONDUCT.md)
 when contributing to this project.
 
 {{/unless~}}
