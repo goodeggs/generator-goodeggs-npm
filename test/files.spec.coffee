@@ -93,8 +93,10 @@ describe 'goodeggs-npm generated files', ->
       assert.file 'LICENSE.md'
 
     describe 'package.json', ->
-      it 'omits publishConfig', ->
-        assert.noFileContent 'package.json', /"publishConfig":/
+
+      it 'configures with public registry', ->
+        assert.fileContent 'package.json', /"publishConfig":/
+        assert.fileContent 'package.json', /http:\/\/registry\.npmjs\.org/
 
       it 'includes keywords', ->
         assert.fileContent 'package.json', /"keywords": \[/

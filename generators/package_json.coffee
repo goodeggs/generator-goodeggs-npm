@@ -40,6 +40,8 @@ base = ->
     prepublish: "npm run compile"
     pretest: "npm run compile"
     test: "mocha"
+  publishConfig:
+    registry: 'http://registry.npmjs.org'
 
 angular = ->
   devDependencies:
