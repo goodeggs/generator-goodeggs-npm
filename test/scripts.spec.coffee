@@ -20,15 +20,15 @@ describe 'generated scripts', ->
       assert.equal code, 0, 'should not error'
       done()
 
-  # Asserts that `npm test` fails with the expected message "busted"
+  # Asserts that `npm test` fails with the expected message AssertionError
   test = (done) ->
-    loggedBusted = false
+    loggedAssertionError = false
     npm 'test', (code) ->
-      assert loggedBusted, 'should show the mocha test failure'
+      assert loggedAssertionError, 'should show the mocha test failure'
       done()
     .stderr.pipe(split()).on 'data', (data) ->
-      if /\bbusted\b/.test data
-        loggedBusted = true
+      if /AssertionError: expected true to equal false/.test data
+        loggedAssertionError = true
 
   describe 'using coffeescript', ->
     before (done) ->
