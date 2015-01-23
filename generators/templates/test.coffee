@@ -1,4 +1,5 @@
 {{~#unless angular~}}
+require 'mocha-sinon'
 expect = require('chai').expect
 
 {{camelize pkgname}} = require '..'

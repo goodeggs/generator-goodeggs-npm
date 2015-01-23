@@ -34,6 +34,7 @@ base = ->
     "coffee-script": ">=1.8.x"
     "mocha": "~1.x.x"
     "chai": "~1.x.x"
+    "mocha-sinon": "~1.x.x"
   scripts:
     compile: "coffee --bare --compile --output lib/ src/"
     prepublish: "npm run compile"
