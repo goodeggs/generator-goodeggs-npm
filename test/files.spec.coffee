@@ -131,7 +131,7 @@ describe 'goodeggs-npm generated files', ->
       assert.file 'src/index.coffee'
 
     it 'ignores lib folder', ->
-      assert.fileContent '.gitignore', ///lib\////
+      assert.fileContent '.gitignore', ///\/lib///
 
   describe 'vanillajs', ->
     before (done) ->
@@ -141,7 +141,7 @@ describe 'goodeggs-npm generated files', ->
       assert.file 'lib/index.js'
 
     it 'does not ignore lib folder', ->
-      assert.noFileContent '.gitignore', ///lib\////
+      assert.noFileContent '.gitignore', ///\/lib///
 
     describe 'package.json', ->
       it 'depends on jshint at development time', ->
