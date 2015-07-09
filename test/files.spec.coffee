@@ -65,7 +65,7 @@ describe 'goodeggs-npm generated files', ->
 
       it 'restricts publishing to our private registry', ->
         assert.fileContent 'package.json', /"publishConfig":/
-        assert.fileContent 'package.json', /https:\/\/goodeggs\.registry/
+        assert.fileContent 'package.json', /https:\/\/npm\.goodeggs\.com/
 
     describe 'README.md', ->
       it 'includes private badges', ->
