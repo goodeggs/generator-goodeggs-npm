@@ -72,5 +72,5 @@ js = ->
 
 puhrivate = ->
   publishConfig:
-    registry: "https://goodeggs.registry.nodejitsu.com/"
+    registry: "https://npm.goodeggs.com/"
     'always-auth': true
