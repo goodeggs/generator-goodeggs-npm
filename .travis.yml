@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - '0.10'
+
+env:
+  global:
+    secure: "k6Y7BR2n4SVG9kMWibfKsQ8C9rcOxoj9RmcS+aauHQK0ep5/BfEF6Hx/6bhdv65cq7nXoGewoDyRXzZPPPGbrtpUq3ur7vocf1WHxUSSFoqPdcHn7T8L2JpLDxjaPjpV7lNVvJ4cB+NTwhMEEQKbJETh2p4ZF3Q4NExWYZdY5Bg=" # NPM_AUTH
