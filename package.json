@@ -46,5 +46,9 @@
     "node": ">=0.10.0",
     "npm": ">=1.2.10"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.goodeggs.com/",
+    "always-auth": true
+  }
 }
