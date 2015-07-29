@@ -6,3 +6,13 @@ node_js:
 env:
   global:
     secure: "k6Y7BR2n4SVG9kMWibfKsQ8C9rcOxoj9RmcS+aauHQK0ep5/BfEF6Hx/6bhdv65cq7nXoGewoDyRXzZPPPGbrtpUq3ur7vocf1WHxUSSFoqPdcHn7T8L2JpLDxjaPjpV7lNVvJ4cB+NTwhMEEQKbJETh2p4ZF3Q4NExWYZdY5Bg=" # NPM_AUTH
+
+deploy:
+  provider: npm
+  email: open-source@goodeggs.com
+  api_key:
+    secure: "bMpNvv11aZJLhD1D0gi0BODhy681KWjTT1DyILFMdtOOvMW0xRTRtAfp7SmSDvAOVCzQIGM+jLz+CxOGr02NEs7g31alv7idgglPO6E1bsHgoGS2Bf4o59vl87UgKOLBKto6TJZgT7t4HtgGr2NC3zD79S6FAylWfVeL0/nnAU4="
+  clean_up: false
+  on:
+    tags: true
+    all_branches: true
