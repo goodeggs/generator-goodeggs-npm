@@ -1,4 +1,5 @@
-.editorconfig
-.gitignore
-.travis.yml
-test/
+/.editorconfig
+/.gitignore
+/.travis.yml
+/.npmrc
+/test
